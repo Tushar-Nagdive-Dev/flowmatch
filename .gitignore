@@ -7,6 +7,7 @@
 /smart-reconciliation-ui/node_modules/
 /smart-reconciliation-ui/dist/
 /smart-reconciliation-ui/.angular/
+/smart-reconciliation-ui/package-lock.json
 
 # IDEs
 .idea/
