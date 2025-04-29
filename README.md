@@ -35,3 +35,40 @@ Built using **Spring Boot**, **Apache Kafka**, **Apache Camel**, and **Angular**
   ├── frontend/       # Angular Project
   ├── docs/           # Documentation, Diagrams, Architecture
   └── README.md
+
+flowmatch/
+├── project-structure.txt              ⬅️ Optional doc (good for notes)
+├── README.md                          ⬅️ Ready to update with project info
+
+├── smart-reconciliation-api/         ⬅️ ✅ Spring Boot Backend (Maven)
+│   ├── mvnw*, pom.xml                ⬅️ Maven wrapper & config
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/inn/smart_reconciliation_api/
+│   │   │   │   └── SmartReconciliationApiApplication.java
+│   │   │   ├── resources/
+│   │   │   │   ├── application.properties
+│   │   │   │   ├── db/migration/     ⬅️ ✅ Flyway migrations here
+│   │   │   │   ├── static/
+│   │   │   │   └── templates/
+│   │   └── test/
+│   │       └── java/.../SmartReconciliationApiApplicationTests.java
+
+├── smart-reconciliation-ui/          ⬅️ ✅ Angular 17 Frontend (SCSS + Material)
+│   ├── angular.json
+│   ├── package.json
+│   ├── server.ts                     ⬅️ SSR setup (optional if not using SSR now)
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── app.component.*       ⬅️ Root component
+│   │   │   ├── app.config.ts
+│   │   │   └── app.routes.ts
+│   │   ├── assets/
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   └── styles.scss
+│   ├── tsconfig*.json                ⬅️ TypeScript configs
+
+└── docs/                             ⬅️ (Create this folder next if missing)
+    ├── diagrams/
+    └── workflow.svg (later)
