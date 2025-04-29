@@ -1,6 +1,7 @@
 # Java
 /smart-reconciliation-api/target/
 /smart-reconciliation-api/logs/
+/smart-reconciliation-api/src/main/resources/static/
 *.log
 
 # Node
@@ -8,6 +9,7 @@
 /smart-reconciliation-ui/dist/
 /smart-reconciliation-ui/.angular/
 /smart-reconciliation-ui/package-lock.json
+initails-setup.md
 
 # IDEs
 .idea/
