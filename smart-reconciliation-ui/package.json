@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:smart-reconciliation-ui": "node dist/smart-reconciliation-ui/server/server.mjs"
+    "serve:ssr:smart-reconciliation-ui": "node dist/smart-reconciliation-ui/server/server.mjs",
+    "build:ssr": "ng build && ng run smart-reconciliation-ui:server",
+    "serve:ssr": "node dist/server/main.js",
+    "prerender": "ng run smart-reconciliation-ui:prerender"
   },
   "private": true,
   "dependencies": {
