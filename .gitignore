@@ -6,8 +6,10 @@
 # Node
 /smart-reconciliation-ui/node_modules/
 /smart-reconciliation-ui/dist/
+/smart-reconciliation-ui/.angular/
 
 # IDEs
 .idea/
 *.iml
 .vscode/
+

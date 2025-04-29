@@ -23,8 +23,8 @@ public class JwtUtil {
     @Value("${app.jwt.secret}")
     private String secret;
 
-    private static final long EXPIRATION_MS = 86400000; // 1 day
-
+    private static final long EXPIRATION_MS = 600000;
+    
     public String generateToken(Users user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList()));
