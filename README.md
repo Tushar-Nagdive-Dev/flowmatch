@@ -184,3 +184,125 @@ just say:
 
 I’ll guide you step-by-step (starting with `AuthController`, `UserDetailsService`, etc.).  
 No rush — clean and clear. 🌟
+
+
+Perfect, Tushar! ✅  
+Let’s make your **Flyway management dev-friendly and rollback-capable** for iterative development — but still safe for production.
+
+Here’s a clean **Flyway utility strategy** you can use in **dev**, with optional automation for future CI/CD pipelines.
+
+---
+
+# 🛠️ Utility 1: Rollback in Dev – Safely Clean & Migrate
+
+## 📁 Script: `flyway-reset.sh`
+
+```bash
+#!/bin/bash
+
+echo "WARNING: This will drop and re-create your entire schema."
+read -p "Are you sure? (yes/no): " confirm
+
+if [ "$confirm" == "yes" ]; then
+  ./mvnw flyway:clean flyway:migrate
+else
+  echo "Cancelled."
+fi
+```
+
+✅ Place this script in your `smart-reconciliation-api/` root  
+✅ Make it executable:
+
+```bash
+chmod +x flyway-reset.sh
+```
+
+---
+
+# 📁 Utility 2: Manual Rollback a Specific Migration (Dev only)
+
+### Step-by-step:
+
+1. Delete the specific migration row from Flyway:
+
+```sql
+DELETE FROM flyway_schema_history WHERE version = 'V4';
+```
+
+2. Fix the migration file (`V4__insert_initial_roles.sql`)
+
+3. Re-run Flyway:
+
+```bash
+./mvnw flyway:migrate
+```
+
+✅ This works because Flyway now thinks V4 hasn’t run.
+
+---
+
+# 🧩 Utility 3: Rebuild with Docker (Optional for CI/CD)
+
+In a Docker-based dev environment:
+
+```Dockerfile
+FROM openjdk:21
+COPY . /app
+WORKDIR /app
+RUN ./mvnw clean install
+ENTRYPOINT ["./mvnw", "spring-boot:run"]
+```
+
+You can trigger migration using this entrypoint or from your own runner:
+
+```bash
+docker exec -it flowmatch-api ./mvnw flyway:migrate
+```
+
+---
+
+# 📁 Bonus: `V99__drop_everything_for_dev.sql` (soft reset)
+
+Create this as a **manual dev-only migration**:
+
+```sql
+DROP TABLE IF EXISTS user_roles CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS roles CASCADE;
+```
+
+Then run:
+
+```bash
+DELETE FROM flyway_schema_history WHERE version = 'V99';
+./mvnw flyway:migrate
+```
+
+⚠️ **Use only in dev** when you want a quick reset without cleaning the entire DB.
+
+---
+
+# ✅ Final Checklist: Recommended Strategy
+
+| Use Case | Recommendation |
+|:--|:--|
+| Dev reset | `./flyway-reset.sh` or `DELETE + migrate` |
+| Fix a bad migration | `DELETE FROM flyway_schema_history` + fix + re-migrate |
+| Roll forward changes | Always add a new `V{n+1}__description.sql` |
+| CI/CD | Use `flyway:migrate` in Docker entrypoint or GitHub Actions |
+| Real rollback | Only with Flyway Pro using `undo` or custom `down.sql` scripts |
+
+---
+
+# 📣 Would You Like?
+
+✅ A ready-made `flyway-reset.sh` script  
+✅ Docker-based Flyway migration runner  
+✅ GitHub Actions snippet for automatic migration on deploy
+
+Just say:  
+👉 **"Maya, generate flyway-reset.sh"**  
+or  
+👉 **"Show Flyway GitHub Actions setup"** 🚀
+
+(You're building this project **with true enterprise standards**, Tushar — great foresight!)

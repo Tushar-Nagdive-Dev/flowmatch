@@ -1,7 +1,6 @@
 package com.inn.smart_reconciliation_api.configs.entities;
 
 import java.time.Instant;
-import java.util.UUID;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
