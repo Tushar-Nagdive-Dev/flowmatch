@@ -1,5 +1,7 @@
 package com.inn.smart_reconciliation_api.configs.security;
 
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,15 +17,21 @@ import com.inn.smart_reconciliation_api.entities.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Component
 public class JwtUtil {
     
-    @Value("${app.jwt.secret}")
-    private String secret;
-
     private static final long EXPIRATION_MS = 600000;
+
+    private final Key key;
+
+    public JwtUtil(@Value("${app.jwt.secret}") String secret) {
+        this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        log.info("@class JwtUtil key : {}", this.key);
+    }
     
     public String generateToken(Users user) {
         Map<String, Object> claims = new HashMap<>();
@@ -34,7 +42,7 @@ public class JwtUtil {
             .setSubject(user.getUsername())
             .setIssuedAt(new Date())
             .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_MS))
-            .signWith(SignatureAlgorithm.HS256, secret)
+            .signWith(key, SignatureAlgorithm.HS256) // ✅ modern way
             .compact();
     }
 
@@ -43,10 +51,11 @@ public class JwtUtil {
     }
 
     public Claims extractClaims(String token) {
-        return Jwts.parser()
-            .setSigningKey(secret)
-            .parseClaimsJws(token)
-            .getBody();
+        return Jwts.parserBuilder()
+                .setSigningKey(key) // ✅ use Key not String
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
