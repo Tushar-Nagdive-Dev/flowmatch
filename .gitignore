@@ -1,0 +1,12 @@
+# Java
+/smart-reconciliation-api/target/
+*.log
+
+# Node
+/smart-reconciliation-ui/node_modules/
+/smart-reconciliation-ui/dist/
+
+# IDEs
+.idea/
+*.iml
+.vscode/

@@ -1,0 +1,53 @@
+.
+├── project-structure.txt
+├── README.md
+├── smart-reconciliation-api
+│   ├── HELP.md
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── com
+│       │   │       └── inn
+│       │   │           └── smart_reconciliation_api
+│       │   │               └── SmartReconciliationApiApplication.java
+│       │   └── resources
+│       │       ├── application.properties
+│       │       ├── db
+│       │       │   └── migration
+│       │       ├── static
+│       │       └── templates
+│       └── test
+│           └── java
+│               └── com
+│                   └── inn
+│                       └── smart_reconciliation_api
+│                           └── SmartReconciliationApiApplicationTests.java
+└── smart-reconciliation-ui
+    ├── angular.json
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+    ├── server.ts
+    ├── src
+    │   ├── app
+    │   │   ├── app.component.html
+    │   │   ├── app.component.scss
+    │   │   ├── app.component.spec.ts
+    │   │   ├── app.component.ts
+    │   │   ├── app.config.server.ts
+    │   │   ├── app.config.ts
+    │   │   └── app.routes.ts
+    │   ├── assets
+    │   ├── favicon.ico
+    │   ├── index.html
+    │   ├── main.server.ts
+    │   ├── main.ts
+    │   └── styles.scss
+    ├── tsconfig.app.json
+    ├── tsconfig.json
+    └── tsconfig.spec.json
+
+22 directories, 29 files
