@@ -1,5 +1,6 @@
 # Java
 /smart-reconciliation-api/target/
+/smart-reconciliation-api/logs/
 *.log
 
 # Node
