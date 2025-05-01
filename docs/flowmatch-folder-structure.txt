@@ -1,0 +1,168 @@
+.
+├── build.sh
+├── docs
+│   ├── flowmatch-folder-structure.txt
+│   └── project-impl.md
+├── initails-setup.md
+├── project-structure.txt
+├── README.md
+├── smart-reconciliation-api
+│   ├── flyway-reset.sh
+│   ├── HELP.md
+│   ├── logs
+│   │   ├── flowmatch-app.log
+│   │   ├── flowmatch-app.log.2025-04-29.0.gz
+│   │   └── flowmatch-app.log.2025-04-30.0.gz
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── com
+│       │   │       └── inn
+│       │   │           └── smart_reconciliation_api
+│       │   │               ├── configs
+│       │   │               │   ├── entities
+│       │   │               │   │   └── BaseEntity.java
+│       │   │               │   └── security
+│       │   │               │       ├── JwtAuthenticationFilter.java
+│       │   │               │       ├── JwtUtil.java
+│       │   │               │       └── SecurityConfig.java
+│       │   │               ├── controllers
+│       │   │               │   ├── AngularController.java
+│       │   │               │   └── AuthController.java
+│       │   │               ├── dtos
+│       │   │               │   ├── LoginRequest.java
+│       │   │               │   ├── LoginResponse.java
+│       │   │               │   └── RegisterRequest.java
+│       │   │               ├── entities
+│       │   │               │   ├── Role.java
+│       │   │               │   └── Users.java
+│       │   │               ├── repo
+│       │   │               │   ├── RoleRepository.java
+│       │   │               │   └── UserRepository.java
+│       │   │               ├── services
+│       │   │               │   ├── AuthService.java
+│       │   │               │   └── impl
+│       │   │               │       ├── AuthServiceImpl.java
+│       │   │               │       └── CustomUserDetailsService.java
+│       │   │               └── SmartReconciliationApiApplication.java
+│       │   └── resources
+│       │       ├── application.properties
+│       │       ├── db
+│       │       │   └── migration
+│       │       │       ├── V1__intial_tables.sql
+│       │       │       └── V2__initail_roles_insert.sql
+│       │       ├── META-INF
+│       │       │   └── additional-spring-configuration-metadata.json
+│       │       ├── static
+│       │       │   ├── assets
+│       │       │   │   ├── flow.svg
+│       │       │   │   └── flowmatch-background.svg
+│       │       │   ├── chunk-2IG5HC5P.js
+│       │       │   ├── chunk-BNPKS2LP.js
+│       │       │   ├── chunk-I4K6KGHY.js
+│       │       │   ├── chunk-NMOPIQZB.js
+│       │       │   ├── chunk-RP3PVLJR.js
+│       │       │   ├── chunk-S26EED6J.js
+│       │       │   ├── chunk-S67NII3R.js
+│       │       │   ├── chunk-VILWEP6X.js
+│       │       │   ├── chunk-XAZLOLJU.js
+│       │       │   ├── favicon.ico
+│       │       │   ├── index.html
+│       │       │   ├── main-XCE74LLL.js
+│       │       │   ├── polyfills-FFHMD2TL.js
+│       │       │   └── styles-3DKEXLMW.css
+│       │       └── templates
+│       └── test
+│           └── java
+│               └── com
+│                   └── inn
+│                       └── smart_reconciliation_api
+│                           └── SmartReconciliationApiApplicationTests.java
+└── smart-reconciliation-ui
+    ├── angular.json
+    ├── package-lock.json
+    ├── package.json
+    ├── proxy.conf.json
+    ├── README.md
+    ├── server.ts
+    ├── src
+    │   ├── app
+    │   │   ├── app.component.html
+    │   │   ├── app.component.scss
+    │   │   ├── app.component.spec.ts
+    │   │   ├── app.component.ts
+    │   │   ├── app.config.server.ts
+    │   │   ├── app.config.ts
+    │   │   ├── app.routes.ts
+    │   │   └── ui-impl
+    │   │       ├── auth
+    │   │       │   ├── components
+    │   │       │   │   ├── login
+    │   │       │   │   │   ├── login.component.html
+    │   │       │   │   │   ├── login.component.scss
+    │   │       │   │   │   ├── login.component.spec.ts
+    │   │       │   │   │   └── login.component.ts
+    │   │       │   │   └── register
+    │   │       │   │       ├── register.component.html
+    │   │       │   │       ├── register.component.scss
+    │   │       │   │       ├── register.component.spec.ts
+    │   │       │   │       └── register.component.ts
+    │   │       │   ├── gaurds
+    │   │       │   │   └── auth.guard.ts
+    │   │       │   ├── intercep
+    │   │       │   │   └── auth.interceptor.ts
+    │   │       │   ├── interfaces
+    │   │       │   │   └── auth.interface.ts
+    │   │       │   └── services
+    │   │       │       ├── auth.service.spec.ts
+    │   │       │       └── auth.service.ts
+    │   │       └── dash-view
+    │   │           ├── components
+    │   │           │   └── dashboard
+    │   │           │       ├── dashboard.component.html
+    │   │           │       ├── dashboard.component.scss
+    │   │           │       ├── dashboard.component.spec.ts
+    │   │           │       ├── dashboard.component.ts
+    │   │           │       └── pages
+    │   │           │           ├── invoices
+    │   │           │           │   ├── invoices.component.html
+    │   │           │           │   ├── invoices.component.scss
+    │   │           │           │   ├── invoices.component.spec.ts
+    │   │           │           │   └── invoices.component.ts
+    │   │           │           ├── reconciliation
+    │   │           │           │   ├── reconciliation.component.html
+    │   │           │           │   ├── reconciliation.component.scss
+    │   │           │           │   ├── reconciliation.component.spec.ts
+    │   │           │           │   └── reconciliation.component.ts
+    │   │           │           ├── statistics
+    │   │           │           │   ├── statistics.component.html
+    │   │           │           │   ├── statistics.component.scss
+    │   │           │           │   ├── statistics.component.spec.ts
+    │   │           │           │   └── statistics.component.ts
+    │   │           │           └── users
+    │   │           │               ├── users.component.html
+    │   │           │               ├── users.component.scss
+    │   │           │               ├── users.component.spec.ts
+    │   │           │               └── users.component.ts
+    │   │           └── services
+    │   │               ├── dash-view-api.service.spec.ts
+    │   │               ├── dash-view-api.service.ts
+    │   │               ├── dash-view.service.spec.ts
+    │   │               └── dash-view.service.ts
+    │   ├── assets
+    │   │   ├── flow.svg
+    │   │   └── flowmatch-background.svg
+    │   ├── favicon.ico
+    │   ├── index.html
+    │   ├── main.server.ts
+    │   ├── main.ts
+    │   └── styles.scss
+    ├── tsconfig.app.json
+    ├── tsconfig.json
+    ├── tsconfig.server.json
+    └── tsconfig.spec.json
+
+53 directories, 113 files

@@ -17,8 +17,31 @@ export const routes: Routes = [
     },
     {
         path: 'dashboard',
-        loadComponent: () => import('./ui-impl/auth/components/dashboard/dashboard.component').then(c => c.DashboardComponent),
-        canActivate: [AuthGuard]
+        loadComponent: () => import('./ui-impl/dash-view/components/dashboard/dashboard.component').then(c => c.DashboardComponent),
+        canActivate: [AuthGuard],
+        children: [
+            {
+                path: 'stats',
+                loadComponent: () => import('./ui-impl/dash-view/components/dashboard/pages/statistics/statistics.component').then(c => c.StatisticsComponent)
+            },
+            {
+                path: 'invoices',
+                loadComponent: () => import('./ui-impl/dash-view/components/dashboard/pages/invoices/invoices.component').then(c => c.InvoicesComponent)
+            },
+            {
+                path: 'reconciliation',
+                loadComponent: () => import('./ui-impl/dash-view/components/dashboard/pages/reconciliation/reconciliation.component').then(c => c.ReconciliationComponent)
+            },
+            {
+                path: 'users',
+                loadComponent: () => import('./ui-impl/dash-view/components/dashboard/pages/users/users.component').then(c => c.UsersComponent)
+            },
+            {
+                path: '',
+                redirectTo: 'stats',
+                pathMatch: 'full'
+            }
+        ]
     },
     {
         path: '**',

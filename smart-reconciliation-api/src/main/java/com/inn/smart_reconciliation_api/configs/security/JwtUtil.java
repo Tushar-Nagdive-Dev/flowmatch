@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -65,5 +67,30 @@ public class JwtUtil {
 
     private boolean isTokenExpired(String token) {
         return extractClaims(token).getExpiration().before(new Date());
+    }
+
+    public Long getLoggedInUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof CustomUserDetails userDetails) {
+            return userDetails.getId();
+        }
+        throw new RuntimeException("User is not logged in");
+    }
+
+    public boolean isCurrentUserAdmin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof CustomUserDetails userDetails) {
+            return userDetails.getAuthorities().stream()
+                    .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+        }
+        return false;
+    }
+
+    public String getLoggedInUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof CustomUserDetails userDetails) {
+            return userDetails.getUsername();
+        }
+        return "unknown";
     }
 }
