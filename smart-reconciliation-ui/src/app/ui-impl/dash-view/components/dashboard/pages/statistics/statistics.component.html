@@ -1,0 +1,22 @@
+<div class="stats-container">
+
+    <div class="chart-card">
+      <h3>Invoice Status</h3>
+      <canvas baseChart
+        [data]="pieChartData"
+        [type]="pieChartType"
+        [options]="pieChartOptions">
+      </canvas>
+    </div>
+  
+    <div class="chart-card">
+      <h3>Reconciliation Trends</h3>
+      <canvas baseChart
+        [data]="{ labels: barChartLabels, datasets: barChartData }"
+        [type]="barChartType"
+        [options]="barChartOptions">
+      </canvas>
+    </div>
+  
+  </div>
+  
