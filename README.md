@@ -5,6 +5,13 @@
 - **Frontend**: Angular 17 (Standalone Components, Angular Material, macOS-style theme)
 - **Design**: macOS-inspired UI with responsive card layout and background SVG
 - **API Communication**: Angular frontend proxies `/api/**` to Spring Boot backend (`http://localhost:8001`)
+# 📊 FlowMatch Project Status (Snapshot)
+
+## 🧩 Architecture Overview
+- **Backend**: Spring Boot (Java 17+), secured with JWT Authentication
+- **Frontend**: Angular 17 (Standalone Components, Angular Material, macOS-style theme)
+- **Design**: macOS-inspired UI with responsive card layout and background SVG
+- **API Communication**: Angular frontend proxies `/api/**` to Spring Boot backend (`http://localhost:8001`)
 
 ---
 

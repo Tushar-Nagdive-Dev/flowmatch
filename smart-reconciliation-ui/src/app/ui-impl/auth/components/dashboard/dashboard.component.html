@@ -1,28 +1,48 @@
-<div class="dashboard-container">
-    <mat-card class="welcome-card">
-      <h2>Welcome to FlowMatch 💼</h2>
-      <p>Manage your invoices, payments, and users with ease.</p>
-      <button mat-flat-button color="primary" (click)="logout()">Logout</button>
-    </mat-card>
-  
-    <div class="feature-cards">
-      <mat-card class="feature-card">
-        <h3>📥 Invoices</h3>
-        <p>Track, generate, and manage client invoices.</p>
-        <button mat-stroked-button routerLink="/invoices">Go to Invoices</button>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <h3>FlowMatch</h3>
+    <mat-nav-list class="nav-list">
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/dashboard/invoices" routerLinkActive="active">
+        <mat-icon>receipt_long</mat-icon>
+        <span>Invoices</span>
+      </a>
+      <a mat-list-item routerLink="/dashboard/reconciliation" routerLinkActive="active">
+        <mat-icon>compare_arrows</mat-icon>
+        <span>Reconciliation</span>
+      </a>
+      <a mat-list-item routerLink="/dashboard/users" routerLinkActive="active">
+        <mat-icon>people</mat-icon>
+        <span>Users</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar">
+      <span class="app-name">FlowMatch</span>
+      <span class="spacer"></span>
+      <!-- Notification Bell Icon -->
+      <button mat-icon-button aria-label="Notifications">
+        <mat-icon matBadge="3" matBadgeColor="warn">notifications_none</mat-icon>
+      </button>
+
+      <!-- Profile/User Icon -->
+      <button mat-icon-button aria-label="Account">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="content">
+      <mat-card class="welcome-card">
+        <h2>Welcome Tushar 👋</h2>
+        <p>Your Smart Reconciliation Dashboard</p>
       </mat-card>
-  
-      <mat-card class="feature-card">
-        <h3>💳 Payments</h3>
-        <p>Monitor transactions and reconcile payments smartly.</p>
-        <button mat-stroked-button routerLink="/payments">Go to Payments</button>
-      </mat-card>
-  
-      <mat-card class="feature-card">
-        <h3>👥 Users</h3>
-        <p>Manage team access and roles with ease.</p>
-        <button mat-stroked-button routerLink="/users">Go to Users</button>
-      </mat-card>
+
+      <router-outlet></router-outlet>
     </div>
-  </div>
-  
+  </mat-sidenav-content>
+</mat-sidenav-container>
