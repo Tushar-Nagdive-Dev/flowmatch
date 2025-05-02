@@ -3,10 +3,13 @@
 ├── docs
 │   ├── flowmatch-folder-structure.txt
 │   ├── FlowMatch-Product-Vision-Document.md
+│   ├── flowmatch-testing.md
 │   ├── flowmatch-userstrories-plan.md
 │   ├── project-impl.md
 │   └── report-flow.png
 ├── initails-setup.md
+├── logs
+│   └── flowmatch-app.log
 ├── project-structure.txt
 ├── README.md
 ├── smart-reconciliation-api
@@ -37,7 +40,14 @@
 │       │   │               │           └── AuditTrailServiceImpl.java
 │       │   │               ├── configs
 │       │   │               │   ├── entities
-│       │   │               │   │   └── BaseEntity.java
+│       │   │               │   │   ├── BaseEntity.java
+│       │   │               │   │   └── exception
+│       │   │               │   │       ├── BusinessException.java
+│       │   │               │   │       ├── GlobalExceptionHandler.java
+│       │   │               │   │       └── NotFoundException.java
+│       │   │               │   ├── listeners
+│       │   │               │   │   ├── AuditEntityListener.java
+│       │   │               │   │   └── AuditorAwareConfig.java
 │       │   │               │   └── security
 │       │   │               │       ├── CustomUserDetails.java
 │       │   │               │       ├── JwtAuthenticationFilter.java
@@ -98,30 +108,27 @@
 │       │       │       └── V5__audit_trail_table.sql
 │       │       ├── META-INF
 │       │       │   └── additional-spring-configuration-metadata.json
-│       │       ├── static
-│       │       │   ├── assets
-│       │       │   │   ├── flow.svg
-│       │       │   │   └── flowmatch-background.svg
-│       │       │   ├── chunk-2IG5HC5P.js
-│       │       │   ├── chunk-BNPKS2LP.js
-│       │       │   ├── chunk-I4K6KGHY.js
-│       │       │   ├── chunk-NMOPIQZB.js
-│       │       │   ├── chunk-RP3PVLJR.js
-│       │       │   ├── chunk-S26EED6J.js
-│       │       │   ├── chunk-S67NII3R.js
-│       │       │   ├── chunk-VILWEP6X.js
-│       │       │   ├── chunk-XAZLOLJU.js
-│       │       │   ├── favicon.ico
-│       │       │   ├── index.html
-│       │       │   ├── main-XCE74LLL.js
-│       │       │   ├── polyfills-FFHMD2TL.js
-│       │       │   └── styles-3DKEXLMW.css
 │       │       └── templates
 │       └── test
 │           └── java
 │               └── com
 │                   └── inn
 │                       └── smart_reconciliation_api
+│                           ├── auth
+│                           │   ├── AuthControllerTests.java
+│                           │   └── AuthServiceImplTest.java
+│                           ├── invoice
+│                           │   ├── InvoiceControllerTest.java
+│                           │   ├── InvoiceRepositoryTest.java
+│                           │   └── InvoiceServiceImplTest.java
+│                           ├── payment
+│                           │   ├── PaymentControllerTest.java
+│                           │   ├── PaymentRepositoryTest.java
+│                           │   └── PaymentServiceImplTest.java
+│                           ├── reconciliation
+│                           │   ├── ReconciliationControllerTest.java
+│                           │   ├── ReconciliationRepositoryTest.java
+│                           │   └── ReconciliationServiceImplTest.java
 │                           └── SmartReconciliationApiApplicationTests.java
 └── smart-reconciliation-ui
     ├── angular.json
@@ -209,4 +216,4 @@
     ├── tsconfig.server.json
     └── tsconfig.spec.json
 
-61 directories, 149 files
+66 directories, 151 files
