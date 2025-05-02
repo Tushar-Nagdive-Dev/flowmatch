@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
-@Profile("!test")   // ✅ Means → Enable JPA Auditing → ONLY → if profile is NOT "test"
+@Profile("!test")
 @SpringBootApplication
 public class SmartReconciliationApiApplication {
 
