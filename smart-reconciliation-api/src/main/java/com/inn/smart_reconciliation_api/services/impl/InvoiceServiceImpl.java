@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.inn.smart_reconciliation_api.auditTrail.enums.AuditAction;
 import com.inn.smart_reconciliation_api.auditTrail.enums.AuditEntityType;
 import com.inn.smart_reconciliation_api.auditTrail.services.AuditTrailService;
+import com.inn.smart_reconciliation_api.configs.entities.exception.BusinessException;
+import com.inn.smart_reconciliation_api.configs.entities.exception.NotFoundException;
 import com.inn.smart_reconciliation_api.configs.security.JwtUtil;
 import com.inn.smart_reconciliation_api.dtos.InvoiceRequest;
 import com.inn.smart_reconciliation_api.dtos.InvoiceResponse;
@@ -49,7 +51,7 @@ public class InvoiceServiceImpl implements InvoiceService{
     @Override
     public InvoiceResponse getInvoice(Long id) {
 
-        Invoice invoice = invoiceRepository.findById(id).orElseThrow(() -> new RuntimeException("Invoice not found"));
+        Invoice invoice = invoiceRepository.findById(id).orElseThrow(() -> new NotFoundException("Invoice not found"));
 
         validateAccess(invoice.getUserId());
 
@@ -109,7 +111,7 @@ public class InvoiceServiceImpl implements InvoiceService{
 
     private void validateAccess(Long ownerId) {
         if (!jwtUtil.isCurrentUserAdmin() && !ownerId.equals(jwtUtil.getLoggedInUserId())) {
-            throw new RuntimeException("Access Denied");
+            throw new BusinessException("Access Denied");
         }
     }
 }

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.inn.smart_reconciliation_api.auditTrail.enums.AuditAction;
 import com.inn.smart_reconciliation_api.auditTrail.enums.AuditEntityType;
+import com.inn.smart_reconciliation_api.configs.entities.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +27,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "audit_trail")
-public class AuditTrail {
+public class AuditTrail extends BaseEntity{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

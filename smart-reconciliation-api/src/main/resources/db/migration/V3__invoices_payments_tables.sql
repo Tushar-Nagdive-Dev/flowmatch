@@ -7,10 +7,12 @@ CREATE TABLE invoices (
     paid_date DATE,
     customer_name VARCHAR(255) NOT NULL,
     user_id BIGINT NOT NULL,
-    created_by VARCHAR(255),
-    created_at TIMESTAMP,
-    updated_by VARCHAR(255),
-    updated_at TIMESTAMP
+    creator_id BIGINT,
+    creator_username VARCHAR(100),
+    last_modifier_id BIGINT,
+    last_modifier_username VARCHAR(100),
+    created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_modified_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE payments (
@@ -21,8 +23,10 @@ CREATE TABLE payments (
     paid_date DATE,
     payer_name VARCHAR(255) NOT NULL,
     user_id BIGINT NOT NULL,
-    created_by VARCHAR(255),
-    created_at TIMESTAMP,
-    updated_by VARCHAR(255),
-    updated_at TIMESTAMP
+    creator_id BIGINT,
+    creator_username VARCHAR(100),
+    last_modifier_id BIGINT,
+    last_modifier_username VARCHAR(100),
+    created_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_modified_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
