@@ -2,17 +2,21 @@
 ├── build.sh
 ├── docs
 │   ├── flowmatch-folder-structure.txt
-│   └── project-impl.md
+│   ├── FlowMatch-Product-Vision-Document.md
+│   ├── flowmatch-testing.md
+│   ├── flowmatch-userstrories-plan.md
+│   ├── project-impl.md
+│   └── report-flow.png
 ├── initails-setup.md
+├── logs
+│   └── flowmatch-app.log
 ├── project-structure.txt
 ├── README.md
 ├── smart-reconciliation-api
 │   ├── flyway-reset.sh
 │   ├── HELP.md
 │   ├── logs
-│   │   ├── flowmatch-app.log
-│   │   ├── flowmatch-app.log.2025-04-29.0.gz
-│   │   └── flowmatch-app.log.2025-04-30.0.gz
+│   │   └── flowmatch-app.log
 │   ├── mvnw
 │   ├── mvnw.cmd
 │   ├── pom.xml
@@ -22,64 +26,109 @@
 │       │   │   └── com
 │       │   │       └── inn
 │       │   │           └── smart_reconciliation_api
+│       │   │               ├── auditTrail
+│       │   │               │   ├── entity
+│       │   │               │   │   └── AuditTrail.java
+│       │   │               │   ├── enums
+│       │   │               │   │   ├── AuditAction.java
+│       │   │               │   │   └── AuditEntityType.java
+│       │   │               │   ├── repo
+│       │   │               │   │   └── AuditTrailRepository.java
+│       │   │               │   └── services
+│       │   │               │       ├── AuditTrailService.java
+│       │   │               │       └── impl
+│       │   │               │           └── AuditTrailServiceImpl.java
 │       │   │               ├── configs
 │       │   │               │   ├── entities
-│       │   │               │   │   └── BaseEntity.java
+│       │   │               │   │   ├── BaseEntity.java
+│       │   │               │   │   └── exception
+│       │   │               │   │       ├── BusinessException.java
+│       │   │               │   │       ├── GlobalExceptionHandler.java
+│       │   │               │   │       └── NotFoundException.java
+│       │   │               │   ├── listeners
+│       │   │               │   │   ├── AuditEntityListener.java
+│       │   │               │   │   └── AuditorAwareConfig.java
 │       │   │               │   └── security
+│       │   │               │       ├── CustomUserDetails.java
 │       │   │               │       ├── JwtAuthenticationFilter.java
 │       │   │               │       ├── JwtUtil.java
 │       │   │               │       └── SecurityConfig.java
 │       │   │               ├── controllers
 │       │   │               │   ├── AngularController.java
-│       │   │               │   └── AuthController.java
+│       │   │               │   ├── AuthController.java
+│       │   │               │   ├── InvoiceController.java
+│       │   │               │   ├── PaymentController.java
+│       │   │               │   └── ReconciliationController.java
 │       │   │               ├── dtos
+│       │   │               │   ├── InvoiceRequest.java
+│       │   │               │   ├── InvoiceResponse.java
 │       │   │               │   ├── LoginRequest.java
 │       │   │               │   ├── LoginResponse.java
+│       │   │               │   ├── PaymentRequest.java
+│       │   │               │   ├── PaymentResponse.java
+│       │   │               │   ├── ReconciliationRequest.java
+│       │   │               │   ├── ReconciliationResponse.java
 │       │   │               │   └── RegisterRequest.java
 │       │   │               ├── entities
+│       │   │               │   ├── Invoice.java
+│       │   │               │   ├── Payment.java
+│       │   │               │   ├── Reconciliation.java
 │       │   │               │   ├── Role.java
 │       │   │               │   └── Users.java
+│       │   │               ├── enums
+│       │   │               │   ├── InvoiceStatus.java
+│       │   │               │   ├── PaymentStatus.java
+│       │   │               │   └── ReconciliationStatus.java
 │       │   │               ├── repo
+│       │   │               │   ├── InvoiceRepository.java
+│       │   │               │   ├── PaymentRepository.java
+│       │   │               │   ├── ReconciliationRepository.java
 │       │   │               │   ├── RoleRepository.java
 │       │   │               │   └── UserRepository.java
 │       │   │               ├── services
 │       │   │               │   ├── AuthService.java
-│       │   │               │   └── impl
-│       │   │               │       ├── AuthServiceImpl.java
-│       │   │               │       └── CustomUserDetailsService.java
+│       │   │               │   ├── impl
+│       │   │               │   │   ├── AuthServiceImpl.java
+│       │   │               │   │   ├── CustomUserDetailsService.java
+│       │   │               │   │   ├── InvoiceServiceImpl.java
+│       │   │               │   │   ├── PaymentServiceImpl.java
+│       │   │               │   │   └── ReconciliationServiceImpl.java
+│       │   │               │   ├── InvoiceService.java
+│       │   │               │   ├── PaymentService.java
+│       │   │               │   └── ReconciliationService.java
 │       │   │               └── SmartReconciliationApiApplication.java
 │       │   └── resources
 │       │       ├── application.properties
 │       │       ├── db
 │       │       │   └── migration
 │       │       │       ├── V1__intial_tables.sql
-│       │       │       └── V2__initail_roles_insert.sql
+│       │       │       ├── V2__initail_roles_insert.sql
+│       │       │       ├── V3__invoices_payments_tables.sql
+│       │       │       ├── V4__reconciliation_table.sql
+│       │       │       └── V5__audit_trail_table.sql
 │       │       ├── META-INF
 │       │       │   └── additional-spring-configuration-metadata.json
-│       │       ├── static
-│       │       │   ├── assets
-│       │       │   │   ├── flow.svg
-│       │       │   │   └── flowmatch-background.svg
-│       │       │   ├── chunk-2IG5HC5P.js
-│       │       │   ├── chunk-BNPKS2LP.js
-│       │       │   ├── chunk-I4K6KGHY.js
-│       │       │   ├── chunk-NMOPIQZB.js
-│       │       │   ├── chunk-RP3PVLJR.js
-│       │       │   ├── chunk-S26EED6J.js
-│       │       │   ├── chunk-S67NII3R.js
-│       │       │   ├── chunk-VILWEP6X.js
-│       │       │   ├── chunk-XAZLOLJU.js
-│       │       │   ├── favicon.ico
-│       │       │   ├── index.html
-│       │       │   ├── main-XCE74LLL.js
-│       │       │   ├── polyfills-FFHMD2TL.js
-│       │       │   └── styles-3DKEXLMW.css
 │       │       └── templates
 │       └── test
 │           └── java
 │               └── com
 │                   └── inn
 │                       └── smart_reconciliation_api
+│                           ├── auth
+│                           │   ├── AuthControllerTests.java
+│                           │   └── AuthServiceImplTest.java
+│                           ├── invoice
+│                           │   ├── InvoiceControllerTest.java
+│                           │   ├── InvoiceRepositoryTest.java
+│                           │   └── InvoiceServiceImplTest.java
+│                           ├── payment
+│                           │   ├── PaymentControllerTest.java
+│                           │   ├── PaymentRepositoryTest.java
+│                           │   └── PaymentServiceImplTest.java
+│                           ├── reconciliation
+│                           │   ├── ReconciliationControllerTest.java
+│                           │   ├── ReconciliationRepositoryTest.java
+│                           │   └── ReconciliationServiceImplTest.java
 │                           └── SmartReconciliationApiApplicationTests.java
 └── smart-reconciliation-ui
     ├── angular.json
@@ -147,6 +196,8 @@
     │   │           │               ├── users.component.scss
     │   │           │               ├── users.component.spec.ts
     │   │           │               └── users.component.ts
+    │   │           ├── interfaces
+    │   │           │   └── dash-view.interface.ts
     │   │           └── services
     │   │               ├── dash-view-api.service.spec.ts
     │   │               ├── dash-view-api.service.ts
@@ -165,4 +216,4 @@
     ├── tsconfig.server.json
     └── tsconfig.spec.json
 
-53 directories, 113 files
+66 directories, 151 files

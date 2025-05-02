@@ -17,6 +17,7 @@ import com.inn.smart_reconciliation_api.dtos.InvoiceRequest;
 import com.inn.smart_reconciliation_api.dtos.InvoiceResponse;
 import com.inn.smart_reconciliation_api.services.InvoiceService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -28,7 +29,7 @@ public class InvoiceController {
 
     @PreAuthorize("hasAnyRole('USER','ADMIN','FREE','PAID')")
     @PostMapping
-    public ResponseEntity<InvoiceResponse> createInvoice(@RequestBody InvoiceRequest request) {
+    public ResponseEntity<InvoiceResponse> createInvoice(@Valid @RequestBody InvoiceRequest request) {
         return ResponseEntity.ok(invoiceService.createInvoice(request));
     }
 

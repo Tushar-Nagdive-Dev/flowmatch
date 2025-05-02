@@ -3,6 +3,8 @@ package com.inn.smart_reconciliation_api.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.inn.smart_reconciliation_api.configs.entities.BaseEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,11 +16,13 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
+@EqualsAndHashCode(callSuper = false)
 @Table(name = "users")
-public class Users {
+public class Users extends BaseEntity{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
