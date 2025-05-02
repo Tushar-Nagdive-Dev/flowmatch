@@ -45,9 +45,11 @@ class InvoiceControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @SuppressWarnings("removal")
     @MockBean
     private InvoiceService invoiceService;
 
+    @SuppressWarnings("removal")
     @MockBean
     private CustomUserDetailsService customUserDetailsService;
 

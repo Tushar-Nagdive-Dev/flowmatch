@@ -43,9 +43,11 @@ class ReconciliationControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @SuppressWarnings("removal")
     @MockBean
     private ReconciliationService reconciliationService;
 
+    @SuppressWarnings("removal")
     @MockBean
     private CustomUserDetailsService customUserDetailsService;
 

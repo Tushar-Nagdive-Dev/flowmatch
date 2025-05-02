@@ -44,9 +44,11 @@ class PaymentControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @SuppressWarnings("removal")
     @MockBean
     private PaymentService paymentService;
 
+    @SuppressWarnings("removal")
     @MockBean
     private CustomUserDetailsService customUserDetailsService;
 

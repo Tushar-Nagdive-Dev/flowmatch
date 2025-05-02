@@ -37,9 +37,11 @@ class AuthControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
+    @SuppressWarnings("removal")
     @MockBean
     private AuthService authService;
 
+    @SuppressWarnings("removal")
     @MockBean
     private CustomUserDetailsService customUserDetailsService;
 
