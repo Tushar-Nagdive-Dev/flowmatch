@@ -1,5 +1,6 @@
 package com.inn.smart_reconciliation_api.auth;
 
+import com.inn.smart_reconciliation_api.auditTrail.services.AuditTrailService;
 import com.inn.smart_reconciliation_api.configs.security.JwtUtil;
 import com.inn.smart_reconciliation_api.dtos.LoginRequest;
 import com.inn.smart_reconciliation_api.dtos.LoginResponse;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 import org.mockito.MockitoAnnotations;
@@ -43,6 +45,9 @@ class AuthServiceImplTest {
 
     @Mock
     private AuthenticationManager authenticationManager;
+
+    @Mock
+    private AuditTrailService auditTrailService;
 
     @InjectMocks
     private AuthServiceImpl authService;
@@ -94,6 +99,7 @@ class AuthServiceImplTest {
 
         assertEquals("mock-jwt", response.token());
         verify(authenticationManager).authenticate(any(UsernamePasswordAuthenticationToken.class));
+        verify(auditTrailService).recordAction(any(), any(), any(), any(), any());
     }
 
     @Test

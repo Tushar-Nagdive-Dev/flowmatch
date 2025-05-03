@@ -17,7 +17,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.inn.smart_reconciliation_api.auditTrail.services.AuditTrailService;
 import com.inn.smart_reconciliation_api.configs.entities.exception.GlobalExceptionHandler;
+import com.inn.smart_reconciliation_api.configs.security.JwtUtil;
 import com.inn.smart_reconciliation_api.controllers.AuthController;
 import com.inn.smart_reconciliation_api.dtos.LoginRequest;
 import com.inn.smart_reconciliation_api.dtos.LoginResponse;
@@ -29,7 +31,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(AuthController.class)
-@Import({AuthController.class, GlobalExceptionHandler.class}) // ✅ Fix: Add Global Exception handler
+@Import({AuthController.class, GlobalExceptionHandler.class}) 
 @ActiveProfiles("test")
 @AutoConfigureMockMvc(addFilters = false)
 class AuthControllerTests {
@@ -44,6 +46,15 @@ class AuthControllerTests {
     @SuppressWarnings("removal")
     @MockBean
     private CustomUserDetailsService customUserDetailsService;
+
+    @SuppressWarnings("removal")
+    @MockBean
+    private JwtUtil jwtUtil;
+
+    @SuppressWarnings("removal")
+    @MockBean
+    private AuditTrailService auditTrailService;
+
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -81,11 +92,9 @@ class AuthControllerTests {
 
     @Test
     void testLogin_userNotFound() throws Exception {
-        // ✅ Mock Security (to not fail before reaching controller)
         when(customUserDetailsService.loadUserByUsername(any()))
             .thenReturn(User.withUsername("invalidUser").password("password").roles("USER").build());
 
-        // ✅ Mock Service to throw Exception
         when(authService.login(any(LoginRequest.class)))
                 .thenThrow(new UsernameNotFoundException("User not found"));
 
@@ -98,5 +107,13 @@ class AuthControllerTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void shouldLogoutSuccessfully() throws Exception {
+        mockMvc.perform(post("/api/auth/logout")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("User logged out successfully"));
     }
 }

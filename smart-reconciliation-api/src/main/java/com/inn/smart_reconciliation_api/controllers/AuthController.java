@@ -43,6 +43,7 @@ public class AuthController {
 
     @PostMapping("/logout")
     public ResponseEntity<String> logout(@AuthenticationPrincipal UserDetails userDetails) {
+
         // Audit Log (optional but professional)
         if (userDetails != null) {
             String username = userDetails.getUsername();
