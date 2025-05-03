@@ -29,6 +29,7 @@ import { LoginRequest } from '../../interfaces/auth.interface';
 export class LoginComponent implements OnInit{
 
   loginForm!: FormGroup;
+  public errorMessage: string = ''; 
 
   hide = true;
 
@@ -50,7 +51,9 @@ export class LoginComponent implements OnInit{
       const credentials: LoginRequest = this.loginForm.value;
       this.authService.login(credentials).subscribe({
         next: () => this.router.navigate(['/dashboard']),
-        error: err => alert('Login failed: ' + err.error.message)
+        error: err => {
+          this.errorMessage = 'Login failed. Please try again.';
+        } //alert('Login failed: ' + err.error.message)
       });
     }
   }

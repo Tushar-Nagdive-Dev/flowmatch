@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -8,7 +11,10 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardComponent]
+      imports: [DashboardComponent, HttpClientTestingModule,NoopAnimationsModule],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: { params: {}, queryParams: {} } } } // ✅ MOCK ActivatedRoute
+      ]
     })
     .compileComponents();
     

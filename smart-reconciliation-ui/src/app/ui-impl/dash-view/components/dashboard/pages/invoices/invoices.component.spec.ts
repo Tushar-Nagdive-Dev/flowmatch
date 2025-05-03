@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InvoicesComponent } from './invoices.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('InvoicesComponent', () => {
   let component: InvoicesComponent;
@@ -8,7 +9,7 @@ describe('InvoicesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InvoicesComponent]
+      imports: [InvoicesComponent, NoopAnimationsModule]
     })
     .compileComponents();
     

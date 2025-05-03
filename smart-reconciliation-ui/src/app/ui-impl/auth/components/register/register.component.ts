@@ -32,6 +32,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 export class RegisterComponent implements OnInit{
 
   registerForm!: FormGroup;
+  errorMessage: string = '';
   
   hide = true;
 
@@ -61,6 +62,7 @@ export class RegisterComponent implements OnInit{
             duration: 3000,
             panelClass: ['snackbar-error']
           });
+          this.errorMessage = 'Registration failed. Please try again.';
         }
       });
     }

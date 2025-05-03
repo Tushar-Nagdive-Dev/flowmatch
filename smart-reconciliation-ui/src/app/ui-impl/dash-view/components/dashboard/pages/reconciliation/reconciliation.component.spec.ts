@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReconciliationComponent } from './reconciliation.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ReconciliationComponent', () => {
   let component: ReconciliationComponent;
@@ -8,7 +9,7 @@ describe('ReconciliationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReconciliationComponent]
+      imports: [ReconciliationComponent, NoopAnimationsModule]
     })
     .compileComponents();
     
